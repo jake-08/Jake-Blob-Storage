@@ -28,7 +28,7 @@ namespace AzureBlobProject.Services
         public async Task<List<string>> GetAllContainerAndBlobs()
         {
             // Create a list of blob container and names
-            List<string> containerAndBlobNames = new();
+            List<string> containerAndBlobNames = new List<string>();
             
             // Add the accoutn name 
             containerAndBlobNames.Add("Account Name: " + _blobClient.AccountName);

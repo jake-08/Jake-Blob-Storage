@@ -13,23 +13,27 @@
         <table class="table">
             <thead class="thead-dark">
                 <tr>
-                    <th width="85%">
+                    <th width="25%">
                         Blob Name
                     </th>
-                    <th width="15%"></th>
+                    <th width="65%">
+                        Blob Link
+                    </th>
+                    <th width="10%">Delete</th>
                 </tr>
             </thead>
             @foreach (var item in Model)
             {
             <tr>
+                <td>@item.Substring(0, item.IndexOf("_"))</td>
                 <td>
                     <a asp-action="ViewFile" asp-controller="Blob" target="_blank" asp-route-name="@item"
-                asp-route-containerName=@Context.Request.Query["containerName"].ToString()>
+                    asp-route-containerName=@Context.Request.Query["containerName"].ToString()>
                         @item
                     </a>
                 </td>
                 <td class="text-end">
-                    <a asp-action="DeleteFile" asp-controller="Blob" asp-route-name="@item"
+                        <a asp-action="DeleteFile" asp-controller="Blob" asp-route-name="@item"
                     asp-route-containerName=@Context.Request.Query["containerName"].ToString() class="btn btn-danger">
                         Delete
                     </a>

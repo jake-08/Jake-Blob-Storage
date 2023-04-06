@@ -49,7 +49,7 @@ namespace AzureBlobProject.Controllers
 
             if (result)
             {
-                return RedirectToAction("Index", "Container");
+                return RedirectToAction("Manage", "Blob", routeValues: new {containerName = containerName});
             }
 
             return View();
@@ -73,12 +73,11 @@ namespace AzureBlobProject.Controllers
         /// <param name="name"></param>
         /// <param name="containerName"></param>
         /// <returns></returns>
-        [HttpPost]
         public async Task<IActionResult> DeleteFile(string name, string containerName)
         {
             await _blobService.DeleteBlob(name, containerName);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Manage", "Blob", routeValues: new { containerName = containerName });
         }
     }
 }

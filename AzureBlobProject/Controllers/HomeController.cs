@@ -8,33 +8,32 @@ namespace AzureBlobProject.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly BlobServiceClient _blobServiceClient;
         private readonly IContainerService _containerService;
         private readonly IBlobService _blobService;
 
-        public HomeController(IContainerService containerService, IBlobService blobService, BlobServiceClient blobServiceClient)
+        public HomeController(IContainerService containerService, IBlobService blobService)
         {
             _containerService = containerService;
             _blobService = blobService;
-            _blobServiceClient = blobServiceClient;
         }
 
         public async Task<IActionResult> Index()
         {
-            return View(await _containerService.GetAllContainerAndBlobs());
-        }
-
-        public async Task<IActionResult> Images()
-        {
             try
             {
-                List<Blob> blobList = await _blobService.GetAllBlobsWithUri("jakeblobstorage-abc");
+                List<Blob> blobList = await _blobService.GetAllBlobsWithUri("jakeblobstorage-images");
                 return View(blobList);
             }
             catch
             {
                 return RedirectToAction("Create", "Container");
             }
+            
+        }
+
+        public async Task<IActionResult> Hierarchy()
+        {
+            return View(await _containerService.GetAllContainerAndBlobs());
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

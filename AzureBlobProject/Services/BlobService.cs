@@ -100,6 +100,10 @@ namespace AzureBlobProject.Services
                 {
                     blobIndividual.Title = blobProperties.Metadata["title"];
                 }
+                if (blobProperties.Metadata.ContainsKey("comment"))
+                {
+                    blobIndividual.Comment = blobProperties.Metadata["comment"];
+                }
 
                 blobList.Add(blobIndividual);
             }
@@ -135,7 +139,10 @@ namespace AzureBlobProject.Services
             // Add metadata for blobs 
             IDictionary<string, string> metadata = new Dictionary<string, string>();
             metadata.Add("title", blob.Title);
-            metadata["comment"] = blob.Comment;
+            if(blob.Comment != null)
+            {
+                metadata["comment"] = blob.Comment;
+            }
 
             // Upload a new Blob, overides if exists
             var result = await blobClient.UploadAsync(file.OpenReadStream(), httpHeaders, metadata);  

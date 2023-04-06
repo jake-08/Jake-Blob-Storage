@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jake Blob Project</title>
+    <title>Jake Blob Storage</title>
     <link rel="shortcut icon" type="image/ico" href="~/favicon.ico" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
@@ -28,10 +28,10 @@
                             <a class="nav-link @(path == "/" ? "text-primary" : "")" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @(path.Contains("Images") ? "text-primary" : "")" asp-area="" asp-controller="Home" asp-action="Images">Images</a>
+                            <a class="nav-link @(path.Contains("Container") || path.Contains("Blob") ? "text-primary" : "")" asp-area="" asp-controller="Container" asp-action="Index">Container</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @(path.Contains("Container") || path.Contains("Blob") ? "text-primary" : "")" asp-area="" asp-controller="Container" asp-action="Index">Container</a>
+                            <a class="nav-link @(path.Contains("Hierarchy") ? "text-primary" : "")" asp-area="" asp-controller="Home" asp-action="Hierarchy">Hierarchy</a>
                         </li>
                     </ul>
                 </div>

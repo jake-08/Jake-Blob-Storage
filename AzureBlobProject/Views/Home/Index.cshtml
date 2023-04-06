@@ -1,14 +1,24 @@
-﻿@model List<string>
+﻿@model List<Blob>
 
-<div class="container">
-	<div class="row">
-		<div class="p-4">
-			<h4 class="text-primary">Blob Storage Hierarchy</h4>
-			<br/>
-			@foreach (var item in Model)
-			{
-				<p>@item</p>
-			}
-		</div>
-	</div>
+<div class="container  p-4">
+    <div class="row">
+        <h4>Blob Container - <span class="text-primary">jakeblobstorage-images</span></h4>
+    </div>
+    @if(Model.Count() > 0)
+    {
+        <div class="row pt-4">
+            @foreach (var item in Model)
+            {
+                <div class="col-4 border p-2">
+                    <h5 class="text-primary">@item.Title</h5>
+                    <img src="@item.Uri" alt="@item.Comment" style="width: 100%"/>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <p class="text-primary pt-4">No Images in this container</p>
+    }
+
 </div>
